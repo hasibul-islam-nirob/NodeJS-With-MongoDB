@@ -1,0 +1,24 @@
+{
+  "name": "NodeJS-With-MongoDB",
+  "version": "1.0.0",
+  "description": "Working Node JS with MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hasibul-islam-nirob/NodeJS-With-MongoDB.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hasibul-islam-nirob/NodeJS-With-MongoDB/issues"
+  },
+  "homepage": "https://github.com/hasibul-islam-nirob/NodeJS-With-MongoDB#readme",
+  "dependencies": {
+    "mongodb": "^4.4.1"
+  }
+}
