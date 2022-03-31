@@ -18,14 +18,27 @@ mongoClient.connect(url, config, function (error, myMongoClient){
        //FindDataByLimit(myMongoClient);
        //FindDataBySorting(myMongoClient);
        //updateData(myMongoClient);
-       CreateNewCollection(myMongoClient);
+       //CreateNewCollection(myMongoClient);
+       DeleteOldCollection(myMongoClient);
    }
 });
+
+// Delete Collection or Table
+function DeleteOldCollection(myMongoClient){
+    var myDatabase = myMongoClient.db('school');
+    myDatabase.dropCollection("tests", function (error, result){
+        if (error){
+            console.log("Something Wrong");
+        }else {
+            console.log("Collection Drop Successful");
+        }
+    })
+}
 
 // Create New Collection or Table
 function CreateNewCollection(myMongoClient){
     var myDatabase = myMongoClient.db('school');
-    myDatabase.createCollection("teachers", function (error, result){
+    myDatabase.createCollection("tests", function (error, result){
         if (error){
             console.log("Something Wrong");
         }else {
