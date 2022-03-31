@@ -13,7 +13,8 @@ mongoClient.connect(url, config, function (error, myMongoClient){
        //findOneDataWithoutCondition(myMongoClient);
        //findOneDataWithCondition(myMongoClient);
        //AllData(myMongoClient);
-       AllDataUsingProjection(myMongoClient);
+       //AllDataUsingProjection(myMongoClient);
+       SelectDataByQuery(myMongoClient);
    }
 });
 
@@ -32,14 +33,28 @@ function insertData(myMongoClient){
     })
 }
 
+
+//Select Data Using Query
+function SelectDataByQuery(myMongoClient){
+    var myDatabase = myMongoClient.db("school");
+    var myCollection = myDatabase.collection('students');
+
+    var Query = {city:"Dhaka"}
+    myCollection.find(Query).toArray(function (error, result){
+        console.log(result);
+    })
+
+}
+
+
 //Find Data Using Projection Not Working
 function AllDataUsingProjection(myMongoClient){
-    var myDatabase = myMongoClient.db('school');
+    var myDatabase = myMongoClient.db("school");
     var myCollection = myDatabase.collection('students');
 
     var itemObj = {}
     var projectionItems = {
-        projection:{roll : " "}
+        projection:{roll :" "}
     }
 
     myCollection.find(itemObj, projectionItems).toArray(function (error, result){
