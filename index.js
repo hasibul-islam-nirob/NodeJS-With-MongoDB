@@ -15,7 +15,8 @@ mongoClient.connect(url, config, function (error, myMongoClient){
        //AllData(myMongoClient);
        //AllDataUsingProjection(myMongoClient);
        //SelectDataByQuery(myMongoClient);
-       FindDataByLimit(myMongoClient);
+       //FindDataByLimit(myMongoClient);
+       FindDataBySorting(myMongoClient);
    }
 });
 
@@ -34,6 +35,19 @@ function insertData(myMongoClient){
     })
 }
 
+//Find Data Using Sorting
+function FindDataBySorting(myMongoClient){
+    var myDatabase = myMongoClient.db("school");
+    var myCollection = myDatabase.collection('students');
+
+    // let sortPattern = {roll:1}   // Ascending Order
+    let sortPattern = {roll:-1}     // Descending Order
+
+    myCollection.find().sort(sortPattern).toArray(function (error, result){
+        console.log(result);
+    })
+
+}
 
 //Find Data Using Limit
 function FindDataByLimit(myMongoClient){
