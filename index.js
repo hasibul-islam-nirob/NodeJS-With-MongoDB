@@ -17,9 +17,23 @@ mongoClient.connect(url, config, function (error, myMongoClient){
        //SelectDataByQuery(myMongoClient);
        //FindDataByLimit(myMongoClient);
        //FindDataBySorting(myMongoClient);
-       updateData(myMongoClient);
+       //updateData(myMongoClient);
+       CreateNewCollection(myMongoClient);
    }
 });
+
+// Create New Collection or Table
+function CreateNewCollection(myMongoClient){
+    var myDatabase = myMongoClient.db('school');
+    myDatabase.createCollection("teachers", function (error, result){
+        if (error){
+            console.log("Something Wrong");
+        }else {
+            console.log("Collection Created Successful");
+        }
+    })
+}
+
 
 // Insert data
 function insertData(myMongoClient){
