@@ -11,7 +11,8 @@ mongoClient.connect(url, config, function (error, myMongoClient){
        //deleteOneData(myMongoClient);
        //deleteManyData(myMongoClient);
        //findOneDataWithoutCondition(myMongoClient);
-       findOneDataWithCondition(myMongoClient);
+       //findOneDataWithCondition(myMongoClient);
+       AllData(myMongoClient);
    }
 });
 
@@ -28,6 +29,22 @@ function insertData(myMongoClient){
             console.log("Data Insert Success");
         }
     })
+}
+
+
+//Find All Data
+function AllData(myMongoClient){
+    var myDatabase = myMongoClient.db('school');
+    var myCollection = myDatabase.collection('students');
+
+    myCollection.find().toArray(function (error, result){
+        if (error){
+            console.log("Data Not Selected");
+        } else{
+            console.log(result);
+        }
+    })
+
 }
 
 //Find One Data With Condition
