@@ -8,7 +8,8 @@ mongoClient.connect(url, config, function (error, myMongoClient){
    } else{
        console.log("Connection Success");
        //insertData(myMongoClient);
-       deleteOneData(myMongoClient);
+       //deleteOneData(myMongoClient);
+       deleteManyData(myMongoClient);
    }
 });
 
@@ -37,6 +38,20 @@ function deleteOneData(myMongoClient){
             console.log("Data Delete Fail");
         } else{
             console.log("Data Delete Success");
+        }
+    })
+}
+
+// Data Delete Using 'deleteMany' Method
+function deleteManyData(myMongoClient){
+    var myDatabase = myMongoClient.db('school');
+    var myCollection = myDatabase.collection('students');
+
+    myCollection.deleteMany(function (error, ResultObj){
+        if (error){
+            console.log("Data Delete Fail");
+        } else{
+            console.log(ResultObj.deletedCount +" Item's Delete Successful");
         }
     })
 }
