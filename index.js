@@ -10,7 +10,8 @@ mongoClient.connect(url, config, function (error, myMongoClient){
        //insertData(myMongoClient);
        //deleteOneData(myMongoClient);
        //deleteManyData(myMongoClient);
-       findOneDataWithoutCondition(myMongoClient);
+       //findOneDataWithoutCondition(myMongoClient);
+       findOneDataWithCondition(myMongoClient);
    }
 });
 
@@ -29,6 +30,21 @@ function insertData(myMongoClient){
     })
 }
 
+//Find One Data With Condition
+function findOneDataWithCondition(myMongoClient){
+    var myDatabase = myMongoClient.db('school');
+    var myCollection = myDatabase.collection('students');
+
+    var findItemObj = {roll:"05"}
+    myCollection.findOne(findItemObj, function (error, result){
+        if (error){
+            console.log("Data Not Selected");
+        } else{
+            console.log(result);
+        }
+    })
+}
+
 //Find One Data Without Condition
 function findOneDataWithoutCondition(myMongoClient){
     var myDatabase = myMongoClient.db('school');
@@ -43,7 +59,6 @@ function findOneDataWithoutCondition(myMongoClient){
         }
     })
 }
-
 
 
 // Data Delete Using 'deleteOne' Method
