@@ -12,16 +12,11 @@ mongoClient.connect(url, config, function (error, myMongoClient){
 });
 
 function insertData(myMongoClient){
-    var catchDatabase = myMongoClient.db('school');
-    var catchTable =  catchDatabase.collection('students');
+    var myDatabase = myMongoClient.db('school');
+    var myCollection =  catchDatabase.collection('students');
 
-    var data = {
-        name:"Nirob",
-        roll:"01",
-        class:"Ten",
-        city:"Dhaka"
-    }
-    catchTable.insertOne(data, function (error){
+    var data = {name:"Nirob", roll:"01", class:"Ten", city:"Dhaka"}
+    myCollection.insertOne(data, function (error){
         if (error){
             console.log("Data Insert Fail");
         } else{
