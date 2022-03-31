@@ -16,7 +16,8 @@ mongoClient.connect(url, config, function (error, myMongoClient){
        //AllDataUsingProjection(myMongoClient);
        //SelectDataByQuery(myMongoClient);
        //FindDataByLimit(myMongoClient);
-       FindDataBySorting(myMongoClient);
+       //FindDataBySorting(myMongoClient);
+       updateData(myMongoClient);
    }
 });
 
@@ -35,15 +36,37 @@ function insertData(myMongoClient){
     })
 }
 
+// Update data
+function updateData(myMongoClient){
+    var myDatabase = myMongoClient.db('school');
+    var myCollection =  myDatabase.collection('students');
+
+    var Query = {roll:"04"}
+    var NewValue = { $set: {name:"Hasib"} }
+    myCollection.updateOne(Query, NewValue, function (error, result){
+        if (error){
+            console.log("Something Wrong");
+        }else {
+            if (result.modifiedCount == 1){
+                console.log("Data Update Successful");
+            }else{
+                console.log("Data Update Fail");
+            }
+        }
+
+    })
+
+}
+
 //Find Data Using Sorting With Limit
 function FindDataBySorting(myMongoClient){
     var myDatabase = myMongoClient.db("school");
     var myCollection = myDatabase.collection('students');
 
-    // let sortPattern = {roll:1}   // Ascending Order
-    let sortPattern = {roll:-1}     // Descending Order
+     let sortPattern = {city:1}   // Ascending Order
+    //let sortPattern = {city:-1}     // Descending Order
 
-    myCollection.find().sort(sortPattern).limit(2).toArray(function (error, result){
+    myCollection.find().sort(sortPattern).toArray(function (error, result){
         console.log(result);
     })
 
