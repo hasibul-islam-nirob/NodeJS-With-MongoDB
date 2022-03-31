@@ -35,7 +35,7 @@ function insertData(myMongoClient){
     })
 }
 
-//Find Data Using Sorting
+//Find Data Using Sorting With Limit
 function FindDataBySorting(myMongoClient){
     var myDatabase = myMongoClient.db("school");
     var myCollection = myDatabase.collection('students');
@@ -43,7 +43,7 @@ function FindDataBySorting(myMongoClient){
     // let sortPattern = {roll:1}   // Ascending Order
     let sortPattern = {roll:-1}     // Descending Order
 
-    myCollection.find().sort(sortPattern).toArray(function (error, result){
+    myCollection.find().sort(sortPattern).limit(2).toArray(function (error, result){
         console.log(result);
     })
 
