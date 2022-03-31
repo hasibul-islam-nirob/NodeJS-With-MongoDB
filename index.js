@@ -9,15 +9,17 @@ mongoClient.connect(url, config, function (error, myMongoClient){
        console.log("Connection Success");
        //insertData(myMongoClient);
        //deleteOneData(myMongoClient);
-       deleteManyData(myMongoClient);
+       //deleteManyData(myMongoClient);
+       findOneDataWithoutCondition(myMongoClient);
    }
 });
 
+// Insert data
 function insertData(myMongoClient){
     var myDatabase = myMongoClient.db('school');
     var myCollection =  myDatabase.collection('students');
 
-    var data = {name:"Nirob", roll:"04", class:"Ten", city:"Dhaka"}
+    var data = {name:"Nirob", roll:"05", class:"Ten", city:"Dhaka"}
     myCollection.insertOne(data, function (error){
         if (error){
             console.log("Data Insert Fail");
@@ -26,6 +28,23 @@ function insertData(myMongoClient){
         }
     })
 }
+
+//Find One Data Without Condition
+function findOneDataWithoutCondition(myMongoClient){
+    var myDatabase = myMongoClient.db('school');
+    var myCollection = myDatabase.collection('students');
+
+    var findItem = {}
+    myCollection.findOne(function (error, result){
+        if (error){
+            console.log("Data Not Selected");
+        } else{
+            console.log(result);
+        }
+    })
+}
+
+
 
 // Data Delete Using 'deleteOne' Method
 function deleteOneData(myMongoClient){
