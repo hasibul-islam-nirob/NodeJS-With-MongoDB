@@ -14,7 +14,8 @@ mongoClient.connect(url, config, function (error, myMongoClient){
        //findOneDataWithCondition(myMongoClient);
        //AllData(myMongoClient);
        //AllDataUsingProjection(myMongoClient);
-       SelectDataByQuery(myMongoClient);
+       //SelectDataByQuery(myMongoClient);
+       FindDataByLimit(myMongoClient);
    }
 });
 
@@ -34,8 +35,20 @@ function insertData(myMongoClient){
 }
 
 
-//Select Data Using Query
-function SelectDataByQuery(myMongoClient){
+//Find Data Using Limit
+function FindDataByLimit(myMongoClient){
+    var myDatabase = myMongoClient.db("school");
+    var myCollection = myDatabase.collection('students');
+
+    myCollection.find().limit(3).toArray(function (error, result){
+        console.log(result);
+    })
+
+}
+
+
+//Find Data Using Query
+function FindDataByQuery(myMongoClient){
     var myDatabase = myMongoClient.db("school");
     var myCollection = myDatabase.collection('students');
 
