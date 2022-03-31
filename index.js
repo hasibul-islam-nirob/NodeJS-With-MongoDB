@@ -7,20 +7,35 @@ mongoClient.connect(url, config, function (error, myMongoClient){
        console.log("Connection Fail");
    } else{
        console.log("Connection Success");
-       insertData(myMongoClient);
+       //insertData(myMongoClient);
+       deleteData(myMongoClient);
    }
 });
 
 function insertData(myMongoClient){
     var myDatabase = myMongoClient.db('school');
-    var myCollection =  catchDatabase.collection('students');
+    var myCollection =  myDatabase.collection('students');
 
-    var data = {name:"Nirob", roll:"01", class:"Ten", city:"Dhaka"}
+    var data = {name:"Nirob", roll:"04", class:"Ten", city:"Dhaka"}
     myCollection.insertOne(data, function (error){
         if (error){
             console.log("Data Insert Fail");
         } else{
             console.log("Data Insert Success");
+        }
+    })
+}
+
+function deleteData(myMongoClient){
+    var myDatabase = myMongoClient.db('school');
+    var myCollection = myDatabase.collection('students');
+
+    var deleteItem = {roll:"03"}
+    myCollection.deleteOne(deleteItem, function (error){
+        if (error){
+            console.log("Data Delete Fail");
+        } else{
+            console.log("Data Delete Success");
         }
     })
 }
