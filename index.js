@@ -8,7 +8,7 @@ mongoClient.connect(url, config, function (error, myMongoClient){
    } else{
        console.log("Connection Success");
        //insertData(myMongoClient);
-       deleteData(myMongoClient);
+       deleteOneData(myMongoClient);
    }
 });
 
@@ -26,7 +26,8 @@ function insertData(myMongoClient){
     })
 }
 
-function deleteData(myMongoClient){
+// Data Delete Using 'deleteOne' Method
+function deleteOneData(myMongoClient){
     var myDatabase = myMongoClient.db('school');
     var myCollection = myDatabase.collection('students');
 
