@@ -12,7 +12,8 @@ mongoClient.connect(url, config, function (error, myMongoClient){
        //deleteManyData(myMongoClient);
        //findOneDataWithoutCondition(myMongoClient);
        //findOneDataWithCondition(myMongoClient);
-       AllData(myMongoClient);
+       //AllData(myMongoClient);
+       AllDataUsingProjection(myMongoClient);
    }
 });
 
@@ -31,6 +32,21 @@ function insertData(myMongoClient){
     })
 }
 
+//Find Data Using Projection Not Working
+function AllDataUsingProjection(myMongoClient){
+    var myDatabase = myMongoClient.db('school');
+    var myCollection = myDatabase.collection('students');
+
+    var itemObj = {}
+    var projectionItems = {
+        projection:{roll : " "}
+    }
+
+    myCollection.find(itemObj, projectionItems).toArray(function (error, result){
+        console.log(result);
+    })
+
+}
 
 //Find All Data
 function AllData(myMongoClient){
