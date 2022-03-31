@@ -53,9 +53,7 @@ function updateData(myMongoClient){
                 console.log("Data Update Fail");
             }
         }
-
     })
-
 }
 
 //Find Data Using Sorting With Limit
@@ -83,7 +81,6 @@ function FindDataByLimit(myMongoClient){
 
 }
 
-
 //Find Data Using Query
 function FindDataByQuery(myMongoClient){
     var myDatabase = myMongoClient.db("school");
@@ -95,7 +92,6 @@ function FindDataByQuery(myMongoClient){
     })
 
 }
-
 
 //Find Data Using Projection Not Working
 function AllDataUsingProjection(myMongoClient){
@@ -157,7 +153,6 @@ function findOneDataWithoutCondition(myMongoClient){
         }
     })
 }
-
 
 // Data Delete Using 'deleteOne' Method
 function deleteOneData(myMongoClient){
